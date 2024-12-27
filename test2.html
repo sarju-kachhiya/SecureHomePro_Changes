@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Home Pro</title>
+    <link rel="stylesheet" href="assets/css/custom.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        integrity="sha384-T3c6RZ9h13p2D+9J+QOGsFOhQ9S25Hq/90oegAU7mKUQ9Q6OYS/16J4l/02gk6v0G8L5pAWyq"
+        crossorigin="anonymous">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background-color: #F9F9F9;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #f4f4f4;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        .sidebar button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .sidebar button:hover {
+            background-color: #0056b3;
+        }
+
+        .content {
+            margin-left: 280px;
+            padding: 20px;
+            display: grid;
+            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        .card {
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .card .details {
+            padding: 15px;
+        }
+
+        .card .details h3 {
+            font-size: 18px;
+            margin: 0 0 10px;
+        }
+
+        footer {
+            background-color: #fff;
+            padding: 40px;
+            border-top: 1px solid #ddd;
+        }
+
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-between;
+        }
+
+        .footer-about,
+        .footer-links,
+        .footer-contact {
+            flex: 1 1 200px;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                position: relative;
+                width: 100%;
+                box-shadow: none;
+            }
+
+            .content {
+                margin-left: 0;
+                padding: 20px;
+                grid-template-columns: 1fr;
+            }
+
+            .footer-container {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Secure Home Pro</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="sidebar">
+        <button onclick="filterCards('all')">All</button>
+        <button onclick="filterCards('category1')">Category 1</button>
+        <button onclick="filterCards('category2')">Category 2</button>
+        <button onclick="filterCards('category3')">Category 3</button>
+        <button onclick="filterCards('category4')">Category 4</button>
+    </div>
+
+    <main class="content" id="cardContainer">
+        <div class="card" data-category="category1">
+            <img src="https://via.placeholder.com/300x150" alt="Offer">
+            <div class="details">
+                <h3>Offer 1</h3>
+                <p>Category 1</p>
+            </div>
+        </div>
+        <div class="card" data-category="category2">
+            <img src="https://via.placeholder.com/300x150" alt="Offer">
+            <div class="details">
+                <h3>Offer 2</h3>
+                <p>Category 2</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-about">
+                <p>Secure your home with personalized solutions!</p>
+            </div>
+            <div class="footer-links">
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <p>Contact: info@securehomepro.com</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function filterCards(category) {
+            const cards = document.querySelectorAll('.card');
+
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6ZYgfuA2Aa2WRtQvZVd0q3ZLSDk2cJ4sNzVg/MgIQkqwl+l8uaOCrpzi+Y2Jjbl"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
